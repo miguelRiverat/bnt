@@ -4,8 +4,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let DiagramSchema = new Schema({
-  diagram: Schema.Types.Mixed,  
-  name: String
+  id: Number,
+  title: String,
+  edges: [{}],
+  nodes: [{}]
 }, { versionKey: false })
 
 

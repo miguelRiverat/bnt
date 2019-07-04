@@ -6,8 +6,8 @@ const router = express.Router()
 const controller = require('../controllers/diagramController')
 
 router.get('/', controller.findParams)
-router.get('/:id', controller.show)
-router.put('/:id', controller.update)
+router.get('/:_id', controller.show)
+router.put('/:_id', controller.update)
 router.post('/', controller.store)
 
 
