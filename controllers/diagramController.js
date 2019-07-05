@@ -1,6 +1,6 @@
 'use strict'
 
-const model = require('../models/diagramModel');
+const model = require('../models/diagramModel')
 
 let show = (req, res) => {
 
@@ -12,6 +12,33 @@ let show = (req, res) => {
   return model.find(query)
     .then(record => {
       return res.send(record)
+    })
+    .catch(err => res.send(err))
+}
+
+let del = (req, res) => {
+  let _id = req.params._id
+  if (!_id) {
+    return res.status(404)
+      .send({
+        status: 'NOT OK',
+        message: 'NO RECORD FOUND' 
+      })
+  }
+  model.remove({ _id })
+    .then(result => {
+      if (result.deletedCount > 0) {
+        return res.status(200).send({
+          status: 'OK',
+          message: 'RECORD DELETED' 
+        })
+      }
+    
+    return res.status(404)
+      .send({
+        status: 'NOT OK',
+        message: 'NO RECORD FOUND' 
+      })
     })
     .catch(err => res.send(err))
 }
@@ -67,6 +94,7 @@ let store = (req, res) => {
 }
 
 module.exports = {
+  del,
   show,
   store,
   update,

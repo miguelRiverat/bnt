@@ -4,8 +4,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const diagram = require('./routes/routeDiagram')
+const dijkstra = require('./routes/routeDijkstra')
 const app = express()
-  
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use((req, res, next) => {
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
   next()
 })
 app.use('/diagrams', diagram)
+app.use('/dijkstra', dijkstra)
 
 mongoose.connect('mongodb+srv://miguel:miguel@cluster0-onvlw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'))

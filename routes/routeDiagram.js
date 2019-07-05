@@ -9,6 +9,7 @@ router.get('/', controller.findParams)
 router.get('/:_id', controller.show)
 router.put('/:_id', controller.update)
 router.post('/', controller.store)
+router.delete('/:_id', controller.del)
 
 
 module.exports = router
